@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="sjkim.model.Board"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="sjkim.web.util.OSPTimeUtil"%>
+<%
+int indexNum = searchContainer.getTotal() - ((searchContainer.getCur() - 1) * searchContainer.getDelta() + index);
+// 	스크립트 함수 호출
+String script = "javascript:viewDataType(" + dataType.getDataTypeNo() + ")";
+	
+%>
+
+<liferay-ui:search-container-column-text
+	name="index"
+	value="<%=String.valueOf(indexNum)%>"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="데이터타입"
+	value="<%=dataType.getDataTypeName() +" " + dataType.getDataTypeVersion()%>"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+	href="<%=script%>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="작성자"
+	property="dataTypeWriter"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="작성일자"
+	value="<%=OSPTimeUtil.getTimeBySecond(dataType.getDataTypeWriteDate())%>"
+	truncate="<%= false %>"
+	cssClass="text-md-center text-lg-center"
+/>
+
+<liferay-ui:search-container-column-text
+	name="수정일자"
+	value="<%=OSPTimeUtil.getTimeBySecond(dataType.getDataTypeUpdateDate())%>"
+	truncate="<%= false %>"
+	cssClass="text-md-center text-lg-center"
+/>
+
+<liferay-ui:search-container-column-text>
+	<clay:dropdown-actions
+		dropdownItems="<%= dataTypeDisplayContext.getDataDropdownItems(dataType.getDataTypeNo(), dataType.getDataTypeWriter(), isAdmin, dataType.getDataTypeName() , dataType.getDataTypeVersion())%>" />
+</liferay-ui:search-container-column-text>

@@ -1,0 +1,4 @@
+Bundle-Name: sjkim-web
+Bundle-SymbolicName: sjkim.web
+Bundle-Version: 1.0.0
+Export-Package: sjkim.web.constants

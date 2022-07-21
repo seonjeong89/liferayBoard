@@ -1,0 +1,10 @@
+Bundle-Name: sjkim-api
+Bundle-SymbolicName: sjkim.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	sjkim.exception,\
+	sjkim.model,\
+	sjkim.service,\
+	sjkim.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../sjkim-service/service.xml

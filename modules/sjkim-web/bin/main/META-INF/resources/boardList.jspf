@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="sjkim.model.Board"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="sjkim.web.util.OSPTimeUtil"%>
+<%
+int indexNum = searchContainer.getTotal() - ((searchContainer.getCur() - 1) * searchContainer.getDelta() + index);
+// 	스크립트 함수 호출
+String script = "javascript:viewBoard(" + board.getBoardNo() + ")";
+	
+%>
+
+<liferay-ui:search-container-column-text
+	name="index"
+	value="<%=String.valueOf(indexNum)%>"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="제목"
+	property="boardTitle"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+	href="<%=script%>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="작성자"
+	property="boardWriter"
+	cssClass="text-md-center text-lg-center"
+	truncate="<%= false %>"
+/>
+
+<liferay-ui:search-container-column-text
+	name="작성일자"
+	value="<%=OSPTimeUtil.getTimeBySecond(board.getBoardWriteDate())%>"
+	truncate="<%= false %>"
+	cssClass="text-md-center text-lg-center"
+/>
+
+<liferay-ui:search-container-column-text
+	name="수정일자"
+	value="<%=OSPTimeUtil.getTimeBySecond(board.getBoardUpdateDate())%>"
+	truncate="<%= false %>"
+	cssClass="text-md-center text-lg-center"
+/>
+
+<liferay-ui:search-container-column-text
+	name="조회수"
+	property="boardViewCount"
+	truncate="<%= false %>"
+	cssClass="text-md-center text-lg-center"
+/>
+
+<liferay-ui:search-container-column-text>
+	<clay:dropdown-actions
+		dropdownItems="<%= displayContext.getDataDropdownItems(board.getBoardNo(), board.getBoardWriter(), isAdmin)%>" />
+</liferay-ui:search-container-column-text>
+

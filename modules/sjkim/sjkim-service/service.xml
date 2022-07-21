@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="sjkim">
+	<namespace>SJKIM</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="fooId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="field1" type="String" />
+		<column name="field2" type="boolean" />
+		<column name="field3" type="int" />
+		<column name="field4" type="Date" />
+		<column name="field5" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="field1" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Field2" return-type="Collection">
+			<finder-column name="field2" />
+		</finder>
+	
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+	
+	<entity name="Board" local-service="true" remote-service="true">
+		<!-- PK fields -->
+
+		<column name="boardNo" primary="true" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="boardTitle" type="String" />
+		<column name="boardContent" type="String" />
+		<column name="boardWriter" type="String" />
+		<column name="boardWriteDate" type="Date" />
+		<column name="boardUpdateDate" type="Date" />
+		<column name="boardViewCount" type="Long" />
+		
+		<!-- Finder methods -->
+
+		<finder name="boardTitle" return-type="Collection">
+			<finder-column name="boardTitle" comparator="LIKE"/><!-- WHERE boardTitle LIKE #{boardTitle} -->
+		</finder>
+		
+	</entity>
+	
+	<entity name="UploadFile" local-service="true" remote-service="true">
+		<!-- PK fields -->
+
+		<column name="uploadFileNo" primary="true" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="uploadFileBoardNo" type="long" />
+		<column name="uploadFileName" type="String" />
+		<column name="uploadRealFileName" type="String" />
+		<column name="uploadFileUploadPath" type="String" />
+		<column name="uploadFileMimeType" type="String" />
+		<column name="uploadFileWriter" type="String" />
+		<column name="uploadFileWriteDate" type="Date" />
+		<column name="uploadFileUpdateDate" type="Date" />
+		
+		<!-- Finder methods -->
+
+		<finder name="uploadFileName" return-type="Collection">
+			<finder-column name="uploadFileName" comparator="LIKE"/><!-- WHERE uploadFileName LIKE #{uploadFileName} -->
+		</finder>
+		
+		<finder name="uploadFileBoardNo" return-type="Collection">
+			<finder-column name="uploadFileBoardNo" comparator="="/><!-- WHERE uploadFileName LIKE #{uploadFileName} -->
+		</finder>
+	</entity>
+	
+	<entity name="Reply" local-service="true" remote-service="true">
+		<!-- PK fields -->
+
+		<column name="replyNo" primary="true" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="boardNo" type="long" />
+		<column name="replyContent" type="String" />
+		<column name="replyContentBackUp" type="String" />
+		<column name="replyWriter" type="String" />
+		<column name="replyParentReplyNo" type="Long" />
+		<column name="replyLevel" type="Long" />
+		<column name="replyWriteDate" type="Date" />
+		<column name="replyUpdateDate" type="Date" />
+		<column name="replyDeleteYN" type="String" />
+		
+		<!-- Finder methods -->
+
+		<finder name="replyContent" return-type="Collection">
+			<finder-column name="replyContent" comparator="LIKE"/><!-- WHERE replyContent LIKE #{replyContent} -->
+		</finder>
+		
+		<finder name="boardNo" return-type="Collection">
+			<finder-column name="boardNo" comparator="="/><!-- WHERE boardNo = #{boardNo} -->
+		</finder>
+		
+		<finder name="replyLevelList" return-type="Collection">
+			<finder-column name="boardNo" comparator="="/>
+			<finder-column name="replyLevel" comparator="="/><!-- WHERE replyLevel = #{boardNo} -->
+		</finder>		
+		
+	</entity>
+	
+	<entity name="DataType" local-service="true" remote-service="true">
+		<!-- PK fields -->
+		<column name="dataTypeNo" type="long" primary="true" />
+
+		<!-- Other fields -->
+		<column name="dataTypeNV" type="String" />
+		<column name="dataTypeName" type="String" />
+		<column name="dataTypeVersion" type="String" />
+		<column name="dataTypeDisplayName" type="String" localized="true" />
+		<column name="dataTypeExplanation" type="String" localized="true" />
+		<column name="sampleFileName" type="String"/>
+		<column name="sampleRealFileName" type="String"/>
+		<column name="sampleFileUploadPath" type="String"/>
+		<column name="sampleFileType" type="String"/>
+		<column name="dataTypeWriter" type="String" />
+		<column name="dataTypeWriteDate" type="Date" />
+		<column name="dataTypeUpdateDate" type="Date" />
+		<column name="dataTypeStructure" type="String" localized="true"/>
+		
+		<!-- Finder methods -->
+
+		<finder name="dataTypeNV" return-type="Collection">
+			<finder-column name="dataTypeNV" comparator="LIKE"/><!-- WHERE dataTypeNV LIKE #{dataTypeNV} -->
+		</finder>
+		
+		<finder name="dataTypeName" return-type="Collection">
+			<finder-column name="dataTypeName" comparator="="/><!-- WHERE dataTypeName = #{dataTypeName} -->
+		</finder>
+		
+		<finder name="dataTypeVersion" return-type="Collection">
+			<finder-column name="dataTypeVersion" comparator="="/><!-- WHERE dataTypeVersion = #{dataTypeVersion} -->
+		</finder>
+		
+	</entity>
+	
+</service-builder>

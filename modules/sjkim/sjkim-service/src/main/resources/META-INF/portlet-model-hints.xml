@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="sjkim.model.Board">
+		<field name="boardNo" type="long" />
+		<field name="boardTitle" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="boardContent" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="boardWriter" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="boardWriteDate" type="Date" />
+		<field name="boardUpdateDate" type="Date" />
+		<field name="boardViewCount" type="Long" />
+	</model>
+	<model name="sjkim.model.DataType">
+		<field name="dataTypeNo" type="long" />
+		<field name="dataTypeNV" type="String">
+			<hint name="max-length">520</hint>
+		</field>
+		<field name="dataTypeName" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="dataTypeVersion" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field localized="true" name="dataTypeDisplayName" type="String">
+			<hint name="max-length">10000</hint>
+		</field>
+		<field localized="true" name="dataTypeExplanation" type="String">
+			<hint name="max-length">10000</hint>
+		</field>
+		<field name="sampleFileName" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="sampleRealFileName" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="sampleFileUploadPath" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="sampleFileType" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="dataTypeWriter" type="String" />
+		<field name="dataTypeWriteDate" type="Date" />
+		<field name="dataTypeUpdateDate" type="Date" />
+		<field localized="true" name="dataTypeStructure" type="String">
+			<hint name="max-length">10000</hint>
+		</field>
+	</model>
+	<model name="sjkim.model.Foo">
+		<field name="uuid" type="String" />
+		<field name="fooId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="field1" type="String" />
+		<field name="field2" type="boolean" />
+		<field name="field3" type="int" />
+		<field name="field4" type="Date" />
+		<field name="field5" type="String" />
+	</model>
+	<model name="sjkim.model.Reply">
+		<field name="replyNo" type="long" />
+		<field name="boardNo" type="long" />
+		<field name="replyContent" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="replyContentBackUp" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="replyWriter" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="replyParentReplyNo" type="Long" />
+		<field name="replyLevel" type="Long" />
+		<field name="replyWriteDate" type="Date" />
+		<field name="replyUpdateDate" type="Date" />
+		<field name="replyDeleteYN" type="String" />
+	</model>
+	<model name="sjkim.model.UploadFile">
+		<field name="uploadFileNo" type="long" />
+		<field name="uploadFileBoardNo" type="long" />
+		<field name="uploadFileName" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="uploadRealFileName" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="uploadFileUploadPath" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="uploadFileMimeType" type="String" />
+		<field name="uploadFileWriter" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="uploadFileWriteDate" type="Date" />
+		<field name="uploadFileUpdateDate" type="Date" />
+	</model>
+</model-hints>
